@@ -4,9 +4,9 @@ public class DivisionEntiere {
 
     public static void main(String[] args) {
         System.out.print("Entrez l'entier 1 : ");
-        int entier1 = scanner.nextInt();
+        int entier1 = Utilitaires.lireEntierNonNul();
         System.out.print("Entrez l'entier 2 : ");
-        int entier2 = scanner.nextInt();
+        int entier2 = Utilitaires.lireEntierNonNul();
         int quotient = entier1/entier2;
         System.out.println(entier1+"/"+entier2+" = "+quotient);
     }

@@ -30,6 +30,20 @@ public class Utilitaires {
 
 
     /**
+     * lit un nombre entier non nul
+     * @return un entier non nul
+     */
+    public static int lireEntierNonNul(){
+        int x = scanner.nextInt();
+        while(x == 0){
+            System.out.println("Attention, l'entier ne peut pas etre egal a 0");
+            System.out.println("Recommencez : ");
+            x = scanner.nextInt();
+        }
+        return x;
+    }
+
+    /**
      * lit un nombre reel compris entre les 2 valeurs passees en parametre
      * @param min le plus petit reel accepte
      * @param max le plus grand reel accepte
