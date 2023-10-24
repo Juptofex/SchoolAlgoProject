@@ -8,11 +8,11 @@ public class Statistiques {
 		System.out.println("Les cotes sont evaluees sur 20.");
 		System.out.println("Il faut au moins une cote.");
 		System.out.print("Entrez le nombre de cotes : ");
-		int nombreCotes = scanner.nextInt();
+		int nombreCotes = Utilitaires.lireEntierPositifNonNul();
 		double coteMax = -1; // le plus petit reel
 		for (int i = 1; i <= nombreCotes ; i++) {
 			System.out.print("Entrez la cote n°" + i + ": ");
-			double cote = scanner.nextDouble();
+			double cote = Utilitaires.lireReelComprisEntre(0,20);
 			if(cote>coteMax){
 				coteMax = cote;
 			}

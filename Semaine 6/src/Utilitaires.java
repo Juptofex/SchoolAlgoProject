@@ -43,6 +43,22 @@ public class Utilitaires {
         return x;
     }
 
+
+    /**
+     * lit un nombre entier positif, non nul
+     * @return un entier positif non nul
+     */
+    public static int lireEntierPositifNonNul(){
+        int x = scanner.nextInt();
+        while(x <= 0){
+            System.out.println("Attention, l'entier ne peut pas etre egal a 0, ni etre negatif");
+            System.out.println("Recommencez : ");
+            x = scanner.nextInt();
+        }
+        return x;
+    }
+
+
     /**
      * lit un nombre reel compris entre les 2 valeurs passees en parametre
      * @param min le plus petit reel accepte
