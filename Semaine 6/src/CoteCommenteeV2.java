@@ -11,8 +11,8 @@ public class CoteCommenteeV2 {
 
     /**
      * Commente la cote donnee
-     * @param cote
-     * @return
+     * @param cote cote de l'etudiant
+     * @return un commentaire sur la cote donnee
      */
     public static String donnerCommentaire(double cote){
         if (cote <10) return "L'etudiant n'a pas valide l'UE.";
