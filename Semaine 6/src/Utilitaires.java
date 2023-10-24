@@ -66,7 +66,6 @@ public class Utilitaires {
      * @return un nombre reel compris entre 2 bornes
      */
     public static double lireReelComprisEntre(double min, double max ){
-        System.out.println("Entrez votre cote sur 20 : ");
         double x = scanner.nextDouble();
         while(x > max || x < min){
             System.out.println("Attention la cote doit etre entre "+min+" et "+max+".");
