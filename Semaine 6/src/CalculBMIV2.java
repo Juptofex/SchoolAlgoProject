@@ -1,12 +1,12 @@
-public class calculBMIV2 {
+public class CalculBMIV2 {
 
     public static java.util.Scanner scanner = new java.util.Scanner(System.in);
 
     public static void main(String[] args) {
         System.out.print("Entrez votre poids : ");
-        double poids= scanner.nextDouble();
+        double poids= Utilitaires.lireReelPositif();
         System.out.print(("Entrez votre taille : "));
-        double taille = scanner.nextDouble();
+        double taille = Utilitaires.lireReelPositif();
         double bmi = calculerBmi(poids,taille);
         System.out.println("Votre bmi : "+ bmi);
         String etat = donnerEtat(bmi);
@@ -24,7 +24,7 @@ public class calculBMIV2 {
     }
 
     /**
-     * renvoie sous forme d'une string, l'etat du patient
+     * renvoie sous forme d'une chaine de caracteres, l'etat du patient
      * bmi < 20 : mince
      * [20,25] : normal
      * ]25,30] : en embonpoint
@@ -40,6 +40,7 @@ public class calculBMIV2 {
         // bmi > 25
         if(bmi<=30)
             return "en embonpoint";
+        // bmi > 30
         return "obese";
     }
 
