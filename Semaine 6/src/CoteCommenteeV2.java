@@ -9,6 +9,11 @@ public class CoteCommenteeV2 {
         System.out.println(donnerCommentaire(cote));
     }
 
+    /**
+     * Commente la cote donnee
+     * @param cote
+     * @return
+     */
     public static String donnerCommentaire(double cote){
         if (cote <10) return "L'etudiant n'a pas valide l'UE.";
         if (cote < 14) return "L'etudiant a valide l'UE.";

@@ -12,6 +12,13 @@ public class RechercheMax3V2 {
         System.out.println(max3(entier1, entier2, entier3));
     }
 
+    /**
+     * Determine le maximum entre 3 nombres donne
+     * @param x
+     * @param y
+     * @param z
+     * @return
+     */
     public static String max3(int x, int y, int z){
         if(x>y && x>z) return "Le plus grand entier est "+x;
         if(y>z) return "Le plus grand entier est "+y;
