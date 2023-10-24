@@ -7,12 +7,10 @@ public class CalculMoyenne {
         double totalCotes = 0;
         char reponse;
         do {
-            System.out.print("Entrez une cote (sur 20) : ");
-            double cote = scanner.nextDouble();
-            totalCotes += cote;
+            totalCotes += Utilitaires.lireReelComprisEntre(0,20);;
             nombreCotes++;
-            System.out.print("Encore une cote (o/n) ? ");
-            reponse = scanner.next().charAt(0);
+            System.out.println("Entrez o si vous avez d'autre cote a encoder : ");
+            reponse = Utilitaires.lireOouN();
         } while (reponse == 'o');
         System.out.print("La moyenne des cotes : " + totalCotes/nombreCotes);
     }
