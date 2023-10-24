@@ -14,12 +14,12 @@ public class Deliberation {
     }
 
     /**
-     * Effectue la moyenne des cotes d'un etudiant.
+     * Lis les cotes d'un etudiant et effectue la moyenne.
      * @param maxCote nombre total de cote a encoder
      * @param nEtudiant numéro de l'etudiant traite
      * @param borneCoteMin borne minimum des cotes encodee
      * @param borneCoteMax borne maximum des cotes encodee
-     * @return
+     * @return la moyenne de l'etudiant
      */
     public static double moyenneEtudiant(int maxCote,int nEtudiant, int borneCoteMin, int borneCoteMax){
         double totalCote = 0;
@@ -32,5 +32,4 @@ public class Deliberation {
         }
         return totalCote/nbrCote;
     }
-
 }
