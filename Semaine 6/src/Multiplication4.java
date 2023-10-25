@@ -12,8 +12,42 @@ public class Multiplication4 {
 		System.out.println("Apres chaque multiplication, le programme te demandera si tu en veux une autre");
 	
 		//A NE PAS COMPLETER
+		faireUneMultiplication(4);
 	}
 
+
+	/**
+	 * fait faire des multiplications jusqu'a ce que l'utilisateur décide d'arreter, le nombre d'essais par multiplication
+	 * @param nbrEssais nombre d'essais autorisé pour trouver la réponse
+	 */
+	public static void faireUneMultiplication(int nbrEssais) {
+		int res = 0, borneMinNbr = 0, borneMaxNbr = 10, i = 0, e = 1, reponseUtilisateur = 99999;
+		char rep = 'o';
+		while (rep == 'o') {
+			i++;
+			int premierNombre = Utilitaires.unEntierAuHasardEntre(borneMinNbr, borneMaxNbr);
+			int secondNombre = Utilitaires.unEntierAuHasardEntre(borneMinNbr, borneMaxNbr);
+			System.out.println("Multiplication n°" + i);
+			System.out.println("Calculez : " + premierNombre + " x " + secondNombre + " = ");
+			while (e <= 5 && res != reponseUtilisateur) {
+				e++;
+				reponseUtilisateur = scanner.nextInt();
+				res = premierNombre * secondNombre;
+				if (reponseUtilisateur == res) {
+					System.out.println("Bonne reponse !");
+				}
+				else {
+					System.out.println("Raté !");
+				}
+			}
+			if (e > 5){
+				System.out.println("La bonne reponse est : " + (premierNombre * secondNombre));
+			}
+			e = 1;
+			System.out.println("Voulez-vous continuer ?");
+			rep = Utilitaires.lireOouN();
+		}
+	}
 
 	public static int unEntierAuHasardEntre (int valeurMinimale, int valeurMaximale){
 		double nombreReel;
