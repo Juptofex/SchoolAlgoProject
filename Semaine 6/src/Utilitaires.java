@@ -1,3 +1,8 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Utilitaires {
 
     public static java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -97,5 +102,23 @@ public class Utilitaires {
         return x;
         // TODO
         //il faut placer une boucle dans cette methode !
+    }
+
+
+    /**
+     * lis un charactere et verifie si il se trouve dans une suite de charactere donnés
+     * @param characteresPermis suite des charactere permis
+     * @return le charactere compris dans le parametre characteresPermis
+     */
+    public static String lireCharPermis(String characteresPermis){
+        String str[] = characteresPermis.split("");
+        List<String> l = new ArrayList<String>();
+        l = Arrays.asList(str);
+        String charactere = "";
+        do {
+            System.out.println("Entrez un caractere : ");
+            charactere = scanner.nextLine();
+        }while (!l.contains(charactere));
+        return charactere;
     }
 }
