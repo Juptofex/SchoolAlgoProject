@@ -79,7 +79,7 @@ public class Temperatures {
 		int x = 0;
 		for (int i = 0; i < tableDesTemperatures.length; i++) {
 			if (tableDesTemperatures[i] < 0) {
-				jDG[x] = i;
+				jDG[x] = i+1;
 				x++;
 			}
 		}
