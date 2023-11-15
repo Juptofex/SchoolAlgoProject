@@ -48,7 +48,8 @@ public class NoirJauneRouge {
 	 *         ou -1 si la table ne contient pas d'ecolier avec ce nom
 	 */
 	private int trouverIndiceEcolier(String nom){
-
+		if (nom == null)
+			throw new IllegalArgumentException();
 		for (int i = 0; i < nombreEcoliers(); i++) {
 			if(tableTriee[i].getNom().equals(nom))
 				return i;
@@ -70,20 +71,31 @@ public class NoirJauneRouge {
 		
 		if(nom == null||nom.equals(""))
 			throw new IllegalArgumentException();
+
 		if(couleur!='n' && couleur!='j' && couleur!='r')
 			throw new IllegalArgumentException();
-		if(trouverIndiceEcolier(nom) == -1)
-			throw new IllegalArgumentException();
+
+		if(trouverIndiceEcolier(nom) != -1 || nombreEcoliers() == NOMBRE_MAX_ECOLIERS)
+			return false;
+
 		if(couleur == 'r') {
-
+			tableTriee[nombreEcoliers()] = new Ecolier(nom, couleur);
+			nombreRouges++;
+			return true;
 		}
-		// CONTRAINTE :
-		// Utilisez l'algorithme d'ajout explique dans le document DrapeauBelge
 
-		//Si l'ajout est possible, il faudra creer un ecolier --> new Ecolier()
+		if(couleur == 'j') {
+			tableTriee[nombreEcoliers()] = tableTriee[nombreNoirs + nombreJaunes];
+			tableTriee[nombreNoirs + nombreJaunes] = new Ecolier(nom, couleur);
+			nombreJaunes ++;
+			return true;
+		}
 
-		// TODO
-		return false;
+		tableTriee[nombreEcoliers()] = tableTriee[nombreNoirs + nombreJaunes];
+		tableTriee[nombreNoirs + nombreJaunes] = tableTriee[nombreNoirs];
+		tableTriee[nombreNoirs] = new Ecolier(nom, couleur);
+		nombreNoirs ++;
+		return true;
 
 	}
 	
@@ -98,18 +110,25 @@ public class NoirJauneRouge {
 		
 		if(nom == null||nom.equals(""))
 			throw new IllegalArgumentException();
-		
-		// Pensez a utiliser la methode trouverIndiceEcolier() donnee ci-dessus
-		// L'indice est necessaire pour savoir ou faire des decalages!
 
-		// Grace a l'indice, il est possible de recuperer un ecolier.
-		// Pour connaitre sa couleur, pensez a utiliser la methode getCouleur() de la classe Ecolier
-		
-		// Utilisez l'algorithme de suppression explique dans le document DrapeauBelge
-		
-		// TODO
-		return false;
+		int indiceEcolier = trouverIndiceEcolier(nom);
 
+		if (tableTriee[indiceEcolier].getCouleur() == 'r') {
+			tableTriee[indiceEcolier] = tableTriee[nombreEcoliers() - 1];
+			nombreRouges --;
+			return true;
+		}
+		if (tableTriee[indiceEcolier].getCouleur() == 'j') {
+			tableTriee[indiceEcolier] = tableTriee[nombreNoirs + nombreJaunes - 1];
+			tableTriee[nombreNoirs + nombreJaunes - 1] = tableTriee[nombreEcoliers() - 1];
+			nombreJaunes --;
+			return true;
+		}
+		tableTriee[indiceEcolier] = tableTriee[nombreNoirs - 1];
+		tableTriee[nombreNoirs - 1] = tableTriee [nombreNoirs + nombreJaunes -1];
+		tableTriee[nombreNoirs + nombreJaunes - 1] = tableTriee[nombreEcoliers() - 1];
+		nombreNoirs --;
+		return true;
 	}
 
 	// A NE PAS MODIFIER
