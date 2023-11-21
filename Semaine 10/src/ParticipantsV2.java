@@ -88,9 +88,9 @@ public class ParticipantsV2 {
 
         if(participant==null||participant.length()==0)
             throw new IllegalArgumentException();
-        if (!contientParticipant(participant))
-            return false;
-        for (int i = trouverIndiceParticipant(participant); i < nombreInscrits-1; i++) {
+        int index = trouverIndiceParticipant(participant);
+        if (index == -1) return false;
+        for (int i = index; i < nombreInscrits-1; i++) {
             tableParticipants[i] = tableParticipants[i+1];
         }
         nombreInscrits--;
