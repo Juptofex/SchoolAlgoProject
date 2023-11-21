@@ -1,10 +1,11 @@
-public class ParticipantsV1 {
+public class ParticipantsV2 {
+
     private String[] tableParticipants;
     private int nombreInscrits; 	// taille logique
 
     // Les nombreInscrits participants occupent les nombreInscrits premieres
     // cases du tableau (pas de trou)
-    // l'ordre des participants n'a pas d'importance
+    // l'ordre des participants doit etre conserve
 
     /**
      * construit un objet Participants
@@ -12,7 +13,7 @@ public class ParticipantsV1 {
      * @param nombreMaxParticipants le nombre maximum de participants
      * @throws IllegalArgumentException il faut au moins 1 participant
      */
-    public ParticipantsV1(int nombreMaxParticipants) {
+    public ParticipantsV2(int nombreMaxParticipants) {
         if (nombreMaxParticipants < 1)
             throw new IllegalArgumentException();
         this.tableParticipants = new String[nombreMaxParticipants];
@@ -46,6 +47,7 @@ public class ParticipantsV1 {
      * @throws IllegalArgumentException en cas de parametre invalide
      */
     public boolean contientParticipant(String participant){
+
         if(participant==null||participant.length()==0)
             throw new IllegalArgumentException();
         if (trouverIndiceParticipant(participant) == -1)
@@ -74,9 +76,6 @@ public class ParticipantsV1 {
         tableParticipants[nombreInscrits] = participant;
         nombreInscrits++;
         return true;
-        // Prenez sous les yeux le schema du document SchemasAProjeter
-        // Si cela ne va pas, refaites le QCM classe ParticipantsV1 - ajout suppression sur moovin
-
     }
 
     /**
@@ -89,23 +88,26 @@ public class ParticipantsV1 {
 
         if(participant==null||participant.length()==0)
             throw new IllegalArgumentException();
-        if (trouverIndiceParticipant(participant) == -1)
+        if (!contientParticipant(participant))
             return false;
-        tableParticipants[trouverIndiceParticipant(participant)] = tableParticipants[nombreInscrits-1];
+        for (int i = trouverIndiceParticipant(participant); i < nombreInscrits-1; i++) {
+            tableParticipants[i] = tableParticipants[i+1];
+        }
         nombreInscrits--;
         return true;
 
         // Pensez a utiliser la methode trouverIndiceParticipant()
 
         // Prenez sous les yeux le schema du document SchemasAProjeter
-        // Si cela ne va pas, refaites le QCM classe ParticipantsV1 - ajout suppression sur moovin
+        // Si cela ne va pas, refaites le QCM classe ParticipantsV2 sur moovin
+	// ou revoyez la video SuppressionV2_demo
 
     }
 
 
     // A NE PAS MODIFIER
     // VA SERVIR POUR LES TESTS
-    public ParticipantsV1(int nombreParticipants, String[] tableARecopier) {
+    public ParticipantsV2(int nombreParticipants, String[] tableARecopier) {
         this.tableParticipants = new String[nombreParticipants];
         this.nombreInscrits = tableARecopier.length;
         for (int i = 0; i < nombreInscrits; i++)
@@ -122,5 +124,7 @@ public class ParticipantsV1 {
             aRenvoyer = aRenvoyer + ", " + this.tableParticipants[i];
         return aRenvoyer+"]";
     }
+
+
 
 }
