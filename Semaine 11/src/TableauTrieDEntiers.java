@@ -21,9 +21,16 @@ public class TableauTrieDEntiers{
 	 * @return boolean signale si l'entier a pu etre ajoute
 	 */
 	public boolean ajouterUnEntier(int entier){
-		
-		// TODO
-
+		if (t.length == nombreEntiers) return false;
+		t[nombreEntiers] = entier;
+		for (int i = nombreEntiers; i > 0; i--) {
+			if (t[i]>t[i-1]) break;
+			int temp = t[i-1];
+			t[i-1] = t[i];
+			t[i] = temp;
+		}
+		nombreEntiers++;
+		return true;
 		// CONTRAINTE : UTILISER L ALGORITHME D INSERTION DANS UNE TABLE TRIEE VU AU COURS
 		// ou une variante plus efficace : il n'est pas indispensable de faire des permutations
 		// de simples decalages suffisent
@@ -31,9 +38,6 @@ public class TableauTrieDEntiers{
 		// jusqu'a sa place, alors qu'il pourrait etre deplace en une fois apres avoir fait les decalages
 		// necessaires
 		// A REFLECHIR !
-		
-		return false;
-
 	}
 
 	
@@ -63,12 +67,8 @@ public class TableauTrieDEntiers{
 	 * @return boolean true si l'entier est present dans la table, false sinon
 	 */
 	public boolean contient(int entier){
-		
-		// TODO
 		// UTILISER LA METHODE trouverIndiceLineaire() donnee
-
-		return false;
-
+		return trouverIndiceLineaire(entier) != -1;
 	}  
 
 	
@@ -79,12 +79,14 @@ public class TableauTrieDEntiers{
 	 * @return boolean signale si l'entier a pu etre supprime
 	 */
 	public boolean supprimerUneOccurrence(int entier){
-		
-		// TODO
+		int index = trouverIndiceLineaire(entier);
+		if (index==-1||nombreEntiers==0) return false;
+		for (int i = index; i < nombreEntiers-1; i++) {
+			t[i] = t[i+1];
+		}
+		nombreEntiers--;
+		return true;
 		// UTILISEZ LA METHODE trouverIndiceLineaire()
-
-		return false;
-
 	} 
 
 	
@@ -94,15 +96,19 @@ public class TableauTrieDEntiers{
 	 * @return int le nombre de suppressions effectuees
 	 */
 	public int supprimerToutesLesOccurrences(int entier){
-		
-		// TODO
-
+		int n = 0;
+		for (int i = 0; i < nombreEntiers; i++) {
+			if (t[i]==entier){
+				n++;
+			} else {
+				t[i-n] = t[i];
+			}
+		}
+		nombreEntiers-=n;
+		return n;
 		//Dans une table triee, toutes les occurrences de l'entier se suivent
 		//Il est possible d'ecrire cette methode en un seul passage dans la boucle
 		//Pour une question d'efficacite, evitez d'utiliser la methode supprimerUneOccurrence()
-
-
-		return 0;
 	}
 
 	
@@ -111,14 +117,12 @@ public class TableauTrieDEntiers{
 	 * @return boolean true si la table contient des ex-aequos, false sinon
 	 */
 	public boolean contientExAequo(){
-		
-		// TODO
-
+		for (int i = 0; i < nombreEntiers-1; i++) {
+			if (t[i]==t[i+1]) return true;
+		}
+		return false;
 		// Il est possible d'ecrire cette methode en un seul passage dans la boucle
 		// N'oubliez pas que la table est triee!
-
-		return false;
-
 	}
 
 	
@@ -127,14 +131,19 @@ public class TableauTrieDEntiers{
 	 * @return int le nombre de suppressions effectuees
 	 */
 	public int supprimerTousLesExAequos(){
-		
+		int n = 0;
+		for (int i = 1; i < nombreEntiers; i++) {
+			if (t[i]==t[i-1]) {
+				n++;
+			} else {
+				t[i-n]=t[i];
+			}
+		}
+		nombreEntiers-=n;
+		return n;
 		// TODO
-
 		//Il est possible d'ecrire cette methode en un seul passage dans la boucle
 		//Pour une question d'efficacite, evitez d'utiliser pas la methode supprimerUneOccurrence()
-		
-		return 0;
-
 	}
 
 	//A ne pas modifier
