@@ -12,9 +12,9 @@ public class Questionnaire {
 	 * @return une question QuestionCM
 	 */
 	public QuestionCM fournirQuestion(){
-		//TODO
-		return null;
-
+		indiceDer++;
+		if (indiceDer >= tableQuestions.length) indiceDer = 0;
+		return tableQuestions[indiceDer];
 	}
 
 	public Questionnaire(QuestionCM[] tableARecopier) {

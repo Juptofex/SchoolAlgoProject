@@ -35,10 +35,13 @@ public class Equipe {
 	 * @return le candidat qui vient d'etre supprime ou null si la table ne contient plus de candidat
 	 */
 	public Candidat selectionnerCandidat(){
-		
-		//TODO
-		return null;
-
+		if (nombreCandidats == 0) return null;
+		Candidat temp = tableCandidats[0];
+		for (int i = 0; i < nombreCandidats-1; i++) {
+			tableCandidats[i] = tableCandidats[i+1];
+		}
+		nombreCandidats--;
+		return temp;
 	}
 	
 	/**
@@ -52,10 +55,10 @@ public class Equipe {
 	public boolean remettreEnJeu(Candidat candidat){
 		if(candidat==null)
 			throw new IllegalArgumentException();
-		//TODO		
-		return false;
-
-
+		if (tableCandidats.length == nombreCandidats) return false;
+		tableCandidats[nombreCandidats] = candidat;
+		nombreCandidats++;
+		return true;
 	}
 	
 	/**
@@ -64,10 +67,11 @@ public class Equipe {
 	 * @return la table creee
 	 */
 	public Candidat[] candidatsEnjeu(){
-		
-		//TODO
-		return null;
-
+		Candidat[] tableCandidatEnJeu = new Candidat[nombreCandidats];
+		for (int i = 0; i < nombreCandidats; i++) {
+			tableCandidatEnJeu[i] = tableCandidats[i];
+		}
+		return tableCandidatEnJeu;
 	}	
 	
 	//A NE PAS MODIFIER
