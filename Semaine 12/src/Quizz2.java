@@ -27,10 +27,36 @@ public class Quizz2 {
         fenetreQuizz = new FenetreQuizz("Quizz - Capitales des pays de l'union européenne");
         fenetreQuizz.afficherEquipe(equipeF);
         fenetreQuizz.afficherEquipe(equipeM);
-
-        //TODO
-
-
+        char tour = 'F';
+        while (equipeF.getNombreCandidats() > 0 && equipeM.getNombreCandidats() > 0) {
+            QuestionCM questionActuelle = questionnaire.fournirQuestion();
+            fenetreQuizz.afficherQuestion(questionActuelle);
+            Candidat candidatActuel;
+            Equipe equipe;
+            if (tour == 'F') {
+                tour = 'M';
+                candidatActuel = equipeF.selectionnerCandidat();
+                equipe = equipeF;
+            } else {
+                tour = 'F';
+                candidatActuel = equipeM.selectionnerCandidat();
+                equipe = equipeM;
+            }
+            fenetreQuizz.afficherCandidat(candidatActuel);
+            if (fenetreQuizz.cliquerChoix() == questionActuelle.getNumeroChoixCorrect()) {
+                fenetreQuizz.afficherPouceOK();
+                equipe.remettreEnJeu(candidatActuel);
+            } else {
+                fenetreQuizz.afficherPouceKO();
+            }
+            fenetreQuizz.cliquerSuivant();
+            fenetreQuizz.afficherEquipe(equipe);
+        }
+        if (equipeM.getNombreCandidats() == 0) {
+            fenetreQuizz.afficherInformation("L'équipe des femmes à gagné !");
+        } else {
+            fenetreQuizz.afficherInformation("L'équipe des hommes à gagné !");
+        }
     }
     public static Questionnaire chargerQuestions(){
 
