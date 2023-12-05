@@ -31,17 +31,15 @@ public class Quizz2 {
         while (equipeF.getNombreCandidats() > 0 && equipeM.getNombreCandidats() > 0) {
             QuestionCM questionActuelle = questionnaire.fournirQuestion();
             fenetreQuizz.afficherQuestion(questionActuelle);
-            Candidat candidatActuel;
             Equipe equipe;
             if (tour == 'F') {
                 tour = 'M';
-                candidatActuel = equipeF.selectionnerCandidat();
                 equipe = equipeF;
             } else {
                 tour = 'F';
-                candidatActuel = equipeM.selectionnerCandidat();
                 equipe = equipeM;
             }
+            Candidat candidatActuel = equipe.selectionnerCandidat();
             fenetreQuizz.afficherCandidat(candidatActuel);
             if (fenetreQuizz.cliquerChoix() == questionActuelle.getNumeroChoixCorrect()) {
                 fenetreQuizz.afficherPouceOK();
