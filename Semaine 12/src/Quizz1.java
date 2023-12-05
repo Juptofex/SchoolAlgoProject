@@ -24,8 +24,22 @@ public class Quizz1 {
 		fenetreQuizz = new FenetreQuizz("Quizz - Capitales des pays de l'union europeenne");
 		fenetreQuizz.afficherEquipe(equipe);
 
-		// TODO
-
+		while (equipe.getNombreCandidats() > 1) {
+			Candidat candidatActuel = equipe.selectionnerCandidat();
+			QuestionCM questionActuelle = questionnaire.fournirQuestion();
+			fenetreQuizz.afficherQuestion(questionActuelle);
+			fenetreQuizz.afficherCandidat(candidatActuel);
+			if (fenetreQuizz.cliquerChoix() == questionActuelle.getNumeroChoixCorrect()) {
+				fenetreQuizz.afficherPouceOK();
+				equipe.remettreEnJeu(candidatActuel);
+			} else {
+				fenetreQuizz.afficherPouceKO();
+			}
+			fenetreQuizz.cliquerSuivant();
+			fenetreQuizz.afficherEquipe(equipe);
+		}
+		fenetreQuizz.afficherCandidat(equipe.selectionnerCandidat());
+		fenetreQuizz.afficherInformation("Ce candidat a gagné !");
 	}
 
 	public static Questionnaire chargerQuestions(){
