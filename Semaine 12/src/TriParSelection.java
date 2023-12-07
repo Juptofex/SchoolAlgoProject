@@ -9,8 +9,16 @@ public class TriParSelection {
 	 * @param t table a trier
 	 */
 	public static void triSelf (int[] t) {
-		// TODO
 		// N'utilisez pas de table supplementaire!
+		for (int i = 0; i < t.length; i++) {
+			for (int j = i+1; j < t.length; j++) {
+				if (t[i] > t[j]) {
+					int temp = t[i];
+					t[i] = t[j];
+					t[j] = temp;
+				}
+			}
+		}
 
 	}
 	
@@ -20,10 +28,13 @@ public class TriParSelection {
 	 * @return une nouvelle table triee
 	 */
 	public static int[] tri (int[] t) {
-		// TODO
 		// La table t passee en parametre ne peut pas etre modifiee.
-
-		return null;
+		int[] tempTable = new int[t.length];
+		for (int i = 0; i < t.length; i++) {
+			tempTable[i] = t[i];
+		}
+		triSelf(tempTable);
+		return tempTable;
 	}
 
 	/**
@@ -34,16 +45,25 @@ public class TriParSelection {
 	 * @return une table contenant les 5 plus petits elements de t
 	 */
 	public static int[] tri5 (int[] t) {
-
 		// TODO
 		// La table passee en parametre ne peut etre modifiee.
 		// POUR UNE QUESTION D'EFFICACITE : IL NE FAUT PAS TRIER TOUTE LA TABLE ET
 		// ENSUITE PRENDRE LES 5 PREMIERS!!!
-
 		//version simple : utilisez t, une table intermediaire et la table a renvoyer
-
 		//version defi : n'utilisez pas de table intermediaire :
 		//utilisez uniquement t et la table a renvoyer
+		int[] tempTable;
+		if (t.length < 5) {
+			tempTable = new int[t.length];
+		} else {
+			tempTable = new int[5];
+		}
+
+		for (int i = 0; i < t.length; i++) {
+			for (int j = 0; j < t.length; j++) {
+
+			}
+		}
 
 		return null;
 	}

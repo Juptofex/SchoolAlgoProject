@@ -11,7 +11,18 @@ public class TriParComptage {
 	 * @param borneSup la borne sup des entiers contenus dans la table
 	 */
 	public static void triSelf (int[] t, int borneSup) {
-		// TODO
+		int[] comptage = new int[borneSup+1];
+		for (int i = 0; i < t.length; i++) {
+			comptage[t[i]]++;
+		}
+		int n = 0;
+		for (int i = 0; i < comptage.length; i++) {
+			while (comptage[i] >= 1) {
+				t[n] = i;
+				n++;
+				comptage[i]--;
+			}
+		}
 	}
    
    /**
